@@ -133,14 +133,14 @@ export default function Write() {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-16">
-      <div className="max-w-6xl mx-auto container-padding">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 pt-20 pb-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumb />
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-shadow">
+        <div className="text-center mb-8 lg:mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold mb-4 text-white">
             Create Your Story
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto">
             Share your thoughts, ideas, and stories with the QuillSpace community
           </p>
         </div>
@@ -192,8 +192,8 @@ export default function Write() {
                       <FormControl>
                         <Input
                           {...field}
-                          placeholder="Title"
-                          className="w-full bg-transparent text-3xl font-serif font-bold placeholder-muted-foreground border-none p-0 focus-visible:ring-0"
+                          placeholder="Enter your article title..."
+                          className="w-full bg-transparent text-2xl sm:text-3xl font-serif font-bold text-white placeholder-slate-400 border-none p-0 focus-visible:ring-0"
                           data-testid="input-article-title"
                         />
                       </FormControl>
@@ -208,12 +208,12 @@ export default function Write() {
                   name="excerpt"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Excerpt</FormLabel>
+                      <FormLabel className="text-slate-300">Excerpt</FormLabel>
                       <FormControl>
                         <Textarea
                           {...field}
-                          placeholder="Write a brief excerpt..."
-                          className="bg-transparent placeholder-muted-foreground"
+                          placeholder="Write a brief excerpt that summarizes your article..."
+                          className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-400 min-h-20"
                           rows={3}
                           data-testid="textarea-excerpt"
                         />
@@ -224,22 +224,22 @@ export default function Write() {
                 />
 
                 {/* Category and Featured Image */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
                   <FormField
                     control={form.control}
                     name="category"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Category</FormLabel>
+                        <FormLabel className="text-slate-300">Category</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger data-testid="select-category">
+                            <SelectTrigger className="bg-slate-900/50 border-slate-600 text-white" data-testid="select-category">
                               <SelectValue placeholder="Select a category" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent>
+                          <SelectContent className="bg-slate-800 border-slate-700">
                             {categories.map((category) => (
-                              <SelectItem key={category} value={category}>
+                              <SelectItem key={category} value={category} className="text-white hover:bg-slate-700">
                                 {category}
                               </SelectItem>
                             ))}
@@ -255,12 +255,12 @@ export default function Write() {
                     name="featuredImage"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Featured Image URL</FormLabel>
+                        <FormLabel className="text-slate-300">Featured Image URL</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
                             placeholder="https://example.com/image.jpg"
-                            className="bg-transparent placeholder-muted-foreground"
+                            className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-400"
                             data-testid="input-featured-image"
                           />
                         </FormControl>
@@ -272,13 +272,13 @@ export default function Write() {
 
                 {/* Tags */}
                 <div className="space-y-3">
-                  <FormLabel>Tags</FormLabel>
-                  <div className="flex items-center space-x-2">
+                  <FormLabel className="text-slate-300">Tags</FormLabel>
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
                     <Input
                       value={newTag}
                       onChange={(e) => setNewTag(e.target.value)}
                       placeholder="Add a tag..."
-                      className="bg-transparent placeholder-muted-foreground"
+                      className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-400 flex-1"
                       onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
                       data-testid="input-new-tag"
                     />
@@ -287,9 +287,11 @@ export default function Write() {
                       variant="outline" 
                       size="sm" 
                       onClick={addTag}
+                      className="border-slate-600 text-slate-300 hover:bg-slate-700 w-full sm:w-auto"
                       data-testid="button-add-tag"
                     >
-                      <Plus className="w-4 h-4" />
+                      <Plus className="w-4 h-4 mr-1 sm:mr-0" />
+                      <span className="sm:hidden">Add Tag</span>
                     </Button>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -297,15 +299,15 @@ export default function Write() {
                       <Badge 
                         key={index} 
                         variant="secondary" 
-                        className="flex items-center space-x-1"
+                        className="flex items-center space-x-1 bg-slate-700 text-slate-200 border-slate-600 px-2 py-1"
                         data-testid={`tag-${tag}`}
                       >
-                        <span>{tag}</span>
+                        <span className="text-sm">{tag}</span>
                         <Button
                           type="button"
                           variant="ghost"
                           size="sm"
-                          className="h-auto p-0 ml-1"
+                          className="h-auto p-0 ml-1 text-slate-400 hover:text-red-400"
                           onClick={() => removeTag(tag)}
                           data-testid={`button-remove-tag-${tag}`}
                         >
@@ -336,19 +338,19 @@ export default function Write() {
                 />
 
                 {/* Word Count and Actions */}
-                <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                  <div className="text-sm text-muted-foreground">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-6 border-t border-slate-700 space-y-4 sm:space-y-0">
+                  <div className="text-sm text-slate-400 order-2 sm:order-1">
                     <span data-testid="text-word-count">{wordCount} words</span> • 
                     <span data-testid="text-estimated-read-time"> {Math.ceil(wordCount / 200)} min read</span>
                   </div>
                   <Button 
                     type="submit" 
-                    className="bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700"
+                    className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white font-medium py-2 px-6 order-1 sm:order-2"
                     disabled={publishMutation.isPending}
                     data-testid="button-publish"
                   >
-                    <Send className="w-4 h-4 mr-2" />
-                    {publishMutation.isPending ? "Publishing..." : "Publish"}
+                    <Send className="w-4 h-4 mr-2 flex-shrink-0" />
+                    {publishMutation.isPending ? "Publishing..." : "Publish Article"}
                   </Button>
                 </div>
               </form>
