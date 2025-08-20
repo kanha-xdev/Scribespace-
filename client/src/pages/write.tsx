@@ -145,35 +145,56 @@ export default function Write() {
           </p>
         </div>
 
-        <Card className="glass rounded-3xl border-border/50">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="flex items-center space-x-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
-                  alt="Your profile"
-                  className="w-10 h-10 rounded-full border-2 border-primary/50" 
-                />
-                <div>
-                  <p className="font-medium">Your Name</p>
-                  <p className="text-sm text-muted-foreground">Draft in QuillSpace</p>
-                </div>
-              </CardTitle>
-              <div className="flex items-center space-x-3">
+        {/* Author Info Card */}
+        <Card className="bg-slate-800/50 border-slate-700/50 rounded-xl shadow-xl mb-6">
+          <CardContent className="p-4 sm:p-6">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
+                {(() => {
+                  const name = localStorage.getItem("userName") || "User";
+                  return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+                })()}
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg sm:text-xl font-semibold text-white truncate">
+                  {localStorage.getItem("userName") || "User"}
+                </h3>
+                <p className="text-sm text-slate-400 truncate">
+                  {localStorage.getItem("userEmail") || "user@example.com"}
+                </p>
+                <p className="text-xs text-slate-500 mt-1">
+                  Writing as author
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-slate-800/50 border-slate-700/50 rounded-xl shadow-2xl">
+          <CardHeader className="pb-4">
+            <div className="flex flex-col space-y-4">
+              <CardTitle className="text-xl sm:text-2xl font-serif text-white">Write Article</CardTitle>
+              
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
                 <Button 
-                  variant="ghost" 
+                  type="button"
+                  variant="outline" 
                   onClick={onSaveDraft}
                   disabled={saveDraftMutation.isPending}
+                  className="w-full sm:w-auto border-slate-600 text-slate-300 hover:bg-slate-700 bg-slate-900/50"
                   data-testid="button-save-draft"
                 >
-                  <Save className="w-4 h-4 mr-2" />
-                  Save Draft
+                  <Save className="w-4 h-4 mr-2 flex-shrink-0" />
+                  {saveDraftMutation.isPending ? "Saving..." : "Save Draft"}
                 </Button>
                 <Button 
+                  type="button"
                   variant="outline"
+                  className="w-full sm:w-auto border-slate-600 text-slate-300 hover:bg-slate-700 bg-slate-900/50"
                   data-testid="button-preview"
                 >
-                  <Eye className="w-4 h-4 mr-2" />
+                  <Eye className="w-4 h-4 mr-2 flex-shrink-0" />
                   Preview
                 </Button>
               </div>
