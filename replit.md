@@ -6,6 +6,13 @@ QuillSpace is a premium blogging and content creation platform that enables writ
 
 Preferred communication style: Simple, everyday language.
 
+## Team Project Status
+Working on QuillSpace as part of a 4-member team with divided responsibilities:
+- **Your role**: Frontend - pages & components (React + Tailwind UI)
+- **Team structure**: Using branch-based development
+- **Original roadmap**: Separate backend/ and frontend/ directories with MongoDB
+- **Current status**: Built as integrated full-stack app, needs restructuring for team workflow
+
 # System Architecture
 
 ## Frontend Architecture
