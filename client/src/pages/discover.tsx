@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import ArticleCard from "@/components/article-card";
 import TopicsSection from "@/components/topics-section";
+import Breadcrumb from "@/components/breadcrumb";
 import { Search, Filter, TrendingUp, Clock, Heart } from "lucide-react";
 
 const categories = [
@@ -38,6 +39,7 @@ export default function Discover() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="max-w-7xl mx-auto container-padding">
+        <Breadcrumb />
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-shadow">

@@ -13,8 +13,9 @@ import Article from "@/pages/article";
 import Write from "@/pages/write";
 import Profile from "@/pages/profile";
 import Discover from "@/pages/discover";
+import Settings from "@/pages/settings";
 import NotFound from "@/pages/not-found";
-import Navigation from "@/components/navigation";
+import ProfessionalNavigation from "@/components/professional-navigation";
 import Footer from "@/components/footer";
 import { useReadingProgress } from "@/hooks/use-reading-progress";
 
@@ -75,7 +76,7 @@ function AppRoutes() {
         style={{ width: `${readingProgress}%` }}
       />
       
-      <Navigation />
+      <ProfessionalNavigation />
       <main className="flex-1">
         <Switch>
           <Route path="/home" component={Home} />
@@ -83,6 +84,7 @@ function AppRoutes() {
           <Route path="/write" component={Write} />
           <Route path="/article/:id" component={Article} />
           <Route path="/profile/:id" component={Profile} />
+          <Route path="/settings" component={Settings} />
           <Route component={NotFound} />
         </Switch>
         
