@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "wouter";
+import { useLocation } from "wouter";
 import { insertArticleSchema } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -30,7 +30,7 @@ const categories = [
 ];
 
 export default function Write() {
-  const [router] = useRouter();
+  const [, setLocation] = useLocation();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [newTag, setNewTag] = useState("");
@@ -63,7 +63,7 @@ export default function Write() {
         title: "Article published!",
         description: "Your article has been published successfully.",
       });
-      router(`/article/${article.id}`);
+      setLocation(`/article/${article.id}`);
     },
     onError: () => {
       toast({
@@ -135,6 +135,7 @@ export default function Write() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="max-w-6xl mx-auto container-padding">
+        <Breadcrumb />
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-shadow">
             Create Your Story

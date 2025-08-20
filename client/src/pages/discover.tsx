@@ -25,11 +25,11 @@ export default function Discover() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("latest");
 
-  const { data: articles, isLoading } = useQuery({
+  const { data: articles = [], isLoading } = useQuery({
     queryKey: ["/api/articles", { category: selectedCategory === "All" ? undefined : selectedCategory }],
   });
 
-  const { data: searchResults, isLoading: searchLoading } = useQuery({
+  const { data: searchResults = [], isLoading: searchLoading } = useQuery({
     queryKey: ["/api/search", { q: searchQuery }],
     enabled: searchQuery.length > 2,
   });
