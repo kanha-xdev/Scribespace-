@@ -151,6 +151,8 @@ When we approach writing with mindfulness, we begin to notice the subtle rhythms
     const user: User = {
       ...insertUser,
       id,
+      bio: insertUser.bio || null,
+      avatar: insertUser.avatar || null,
       isVerified: false,
       followerCount: 0,
       followingCount: 0,
@@ -209,6 +211,9 @@ When we approach writing with mindfulness, we begin to notice the subtle rhythms
     const article: Article = {
       ...insertArticle,
       id,
+      tags: insertArticle.tags || null,
+      featuredImage: insertArticle.featuredImage || null,
+      isPublished: insertArticle.isPublished || false,
       likes: 0,
       views: 0,
       commentCount: 0,
@@ -243,6 +248,7 @@ When we approach writing with mindfulness, we begin to notice the subtle rhythms
     const comment: Comment = {
       ...insertComment,
       id,
+      parentId: insertComment.parentId || null,
       likes: 0,
       createdAt: new Date(),
     };
@@ -273,11 +279,11 @@ When we approach writing with mindfulness, we begin to notice the subtle rhythms
     const follower = this.users.get(followerId);
     const following = this.users.get(followingId);
     if (follower) {
-      follower.followingCount = (follower.followingCount || 0) + 1;
+      follower.followingCount = (follower.followingCount ?? 0) + 1;
       this.users.set(followerId, follower);
     }
     if (following) {
-      following.followerCount = (following.followerCount || 0) + 1;
+      following.followerCount = (following.followerCount ?? 0) + 1;
       this.users.set(followingId, following);
     }
     
@@ -295,11 +301,11 @@ When we approach writing with mindfulness, we begin to notice the subtle rhythms
     // Update follower/following counts
     const follower = this.users.get(followerId);
     const following = this.users.get(followingId);
-    if (follower && follower.followingCount > 0) {
+    if (follower && follower.followingCount !== null && follower.followingCount > 0) {
       follower.followingCount = follower.followingCount - 1;
       this.users.set(followerId, follower);
     }
-    if (following && following.followerCount > 0) {
+    if (following && following.followerCount !== null && following.followerCount > 0) {
       following.followerCount = following.followerCount - 1;
       this.users.set(followingId, following);
     }

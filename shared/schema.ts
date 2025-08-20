@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { sql, relations } from "drizzle-orm";
 import { pgTable, text, varchar, timestamp, integer, boolean, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
@@ -40,7 +40,7 @@ export const comments = pgTable("comments", {
   content: text("content").notNull(),
   authorId: varchar("author_id").notNull().references(() => users.id),
   articleId: varchar("article_id").notNull().references(() => articles.id),
-  parentId: varchar("parent_id").references(() => comments.id),
+  parentId: varchar("parent_id").references((): any => comments.id),
   likes: integer("likes").default(0),
   createdAt: timestamp("created_at").defaultNow(),
 });
@@ -89,6 +89,73 @@ export const insertCommentSchema = createInsertSchema(comments).omit({
   createdAt: true,
   likes: true,
 });
+
+// Relations
+export const usersRelations = relations(users, ({ many }) => ({
+  articles: many(articles),
+  comments: many(comments),
+  followers: many(follows, { relationName: "following" }),
+  following: many(follows, { relationName: "followers" }),
+  bookmarks: many(bookmarks),
+  likes: many(likes),
+}));
+
+export const articlesRelations = relations(articles, ({ one, many }) => ({
+  author: one(users, {
+    fields: [articles.authorId],
+    references: [users.id],
+  }),
+  comments: many(comments),
+  bookmarks: many(bookmarks),
+}));
+
+export const commentsRelations = relations(comments, ({ one, many }) => ({
+  author: one(users, {
+    fields: [comments.authorId],
+    references: [users.id],
+  }),
+  article: one(articles, {
+    fields: [comments.articleId],
+    references: [articles.id],
+  }),
+  parent: one(comments, {
+    fields: [comments.parentId],
+    references: [comments.id],
+    relationName: "replies",
+  }),
+  replies: many(comments, { relationName: "replies" }),
+}));
+
+export const followsRelations = relations(follows, ({ one }) => ({
+  follower: one(users, {
+    fields: [follows.followerId],
+    references: [users.id],
+    relationName: "followers",
+  }),
+  following: one(users, {
+    fields: [follows.followingId],
+    references: [users.id],
+    relationName: "following",
+  }),
+}));
+
+export const bookmarksRelations = relations(bookmarks, ({ one }) => ({
+  user: one(users, {
+    fields: [bookmarks.userId],
+    references: [users.id],
+  }),
+  article: one(articles, {
+    fields: [bookmarks.articleId],
+    references: [articles.id],
+  }),
+}));
+
+export const likesRelations = relations(likes, ({ one }) => ({
+  user: one(users, {
+    fields: [likes.userId],
+    references: [users.id],
+  }),
+}));
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
