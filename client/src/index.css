@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(222, 84%, 4.9%);
+  --foreground: hsl(210, 40%, 98%);
+  --card: hsl(222, 84%, 4.9%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --popover: hsl(222, 84%, 4.9%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --primary: hsl(271, 91%, 65%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(217, 32%, 17%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217, 32%, 17%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --accent: hsl(217, 32%, 17%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217, 32%, 17%);
+  --input: hsl(217, 32%, 17%);
+  --ring: hsl(271, 91%, 65%);
+  --chart-1: hsl(271, 91%, 65%);
+  --chart-2: hsl(189, 100%, 50%);
+  --chart-3: hsl(292, 84%, 61%);
+  --chart-4: hsl(159, 78%, 42%);
+  --chart-5: hsl(36, 92%, 57%);
+  --sidebar: hsl(222, 84%, 4.9%);
+  --sidebar-foreground: hsl(210, 40%, 98%);
+  --sidebar-primary: hsl(271, 91%, 65%);
+  --sidebar-primary-foreground: hsl(210, 40%, 98%);
+  --sidebar-accent: hsl(217, 32%, 17%);
+  --sidebar-accent-foreground: hsl(210, 40%, 98%);
+  --sidebar-border: hsl(217, 32%, 17%);
+  --sidebar-ring: hsl(271, 91%, 65%);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: ui-monospace, monospace;
+  --radius: 1rem;
+  --shadow-2xs: 0px 1px 2px 0px hsl(271, 91%, 65% / 0.05);
+  --shadow-xs: 0px 1px 2px 0px hsl(271, 91%, 65% / 0.1);
+  --shadow-sm: 0px 1px 3px 0px hsl(271, 91%, 65% / 0.1), 0px 1px 2px -1px hsl(271, 91%, 65% / 0.1);
+  --shadow: 0px 1px 3px 0px hsl(271, 91%, 65% / 0.1), 0px 1px 2px -1px hsl(271, 91%, 65% / 0.1);
+  --shadow-md: 0px 4px 6px -1px hsl(271, 91%, 65% / 0.1), 0px 2px 4px -2px hsl(271, 91%, 65% / 0.1);
+  --shadow-lg: 0px 10px 15px -3px hsl(271, 91%, 65% / 0.1), 0px 4px 6px -4px hsl(271, 91%, 65% / 0.1);
+  --shadow-xl: 0px 20px 25px -5px hsl(271, 91%, 65% / 0.1), 0px 8px 10px -6px hsl(271, 91%, 65% / 0.1);
+  --shadow-2xl: 0px 25px 50px -12px hsl(271, 91%, 65% / 0.25);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+  
+  /* Custom glassmorphism variables */
+  --glass-bg: hsla(0, 0%, 100%, 0.1);
+  --glass-border: hsla(0, 0%, 100%, 0.2);
+  --glass-dark-bg: hsla(0, 0%, 0%, 0.3);
+  --glass-dark-border: hsla(0, 0%, 100%, 0.1);
+}
+
+.dark {
+  --background: hsl(222, 84%, 4.9%);
+  --foreground: hsl(210, 40%, 98%);
+  --card: hsl(222, 84%, 4.9%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --popover: hsl(222, 84%, 4.9%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --primary: hsl(271, 91%, 65%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(217, 32%, 17%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217, 32%, 17%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --accent: hsl(217, 32%, 17%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217, 32%, 17%);
+  --input: hsl(217, 32%, 17%);
+  --ring: hsl(271, 91%, 65%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    scroll-behavior: smooth;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom glassmorphism styles */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-dark {
+  background: var(--glass-dark-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-dark-border);
+}
+
+/* Parallax transform */
+.parallax {
+  transform: translate3d(0, 0, 0);
+}
+
+/* Curved sections */
+.curve-top {
+  border-radius: 0 0 50% 50% / 0 0 100px 100px;
+}
+
+.curve-bottom {
+  border-radius: 50% 50% 0 0 / 100px 100px 0 0;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-20px); 
+  }
+}
+
+@keyframes glow {
+  from { 
+    box-shadow: 0 0 20px hsla(271, 91%, 65%, 0.3); 
+  }
+  to { 
+    box-shadow: 0 0 30px hsla(271, 91%, 65%, 0.6); 
+  }
+}
+
+@keyframes slide-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Text shadow */
+.text-shadow {
+  text-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.3);
+}
+
+/* Reading progress bar */
+.reading-progress {
+  height: 3px;
+  background: linear-gradient(90deg, hsl(271, 91%, 65%), hsl(189, 100%, 50%));
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transition: width 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(222, 84%, 4.9%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(271, 91%, 65%), hsl(189, 100%, 50%));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, hsl(271, 91%, 75%), hsl(189, 100%, 60%));
+}
+
+/* Typography improvements */
+.prose {
+  @apply text-foreground;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  @apply font-serif font-bold text-foreground;
+}
+
+.prose p {
+  @apply leading-relaxed text-muted-foreground;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary pl-6 italic text-xl text-muted-foreground;
+}
+
+.prose code {
+  @apply bg-muted px-2 py-1 rounded text-sm;
+}
+
+.prose pre {
+  @apply bg-muted p-4 rounded-lg overflow-x-auto;
+}
+
+/* Gradient text utilities */
+.gradient-text {
+  background: linear-gradient(90deg, hsl(271, 91%, 65%), hsl(189, 100%, 50%), hsl(292, 84%, 61%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Loading states */
+.loading-skeleton {
+  @apply bg-muted animate-pulse rounded;
+}
+
+/* Focus styles */
+.focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+/* Container utilities */
+.container-padding {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+.section-spacing {
+  @apply py-16 md:py-24;
+}
