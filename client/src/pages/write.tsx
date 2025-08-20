@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import { insertArticleSchema } from "@shared/schema";
+import { insertArticleSchema } from "@/lib/schemas";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import Breadcrumb from "@/components/breadcrumb";
@@ -43,12 +43,10 @@ export default function Write() {
       title: "",
       content: "",
       excerpt: "",
-      authorId: "user-1", // Mock user ID
       category: "",
-      tags: [],
-      readTime: 0,
-      isPublished: false,
       featuredImage: "",
+      published: false,
+      tags: [],
     },
   });
 

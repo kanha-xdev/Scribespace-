@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { User, Mail, Bell, Shield, Palette, Save } from "lucide-react";
+import { User, Bell, Shield, Palette, Save } from "lucide-react";
 
 export default function SettingsPage() {
   const [profile, setProfile] = useState({

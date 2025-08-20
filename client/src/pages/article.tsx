@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import CommentSection from "@/components/comment-section";
+import CommentSection from "@/components/comment-section-simple";
 import { Heart, MessageCircle, Share2, Bookmark, UserPlus, Clock, Eye } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 

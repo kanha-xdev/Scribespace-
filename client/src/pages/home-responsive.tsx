@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "wouter";
-import { TrendingUp, BookOpen, Users, Clock, Eye, ThumbsUp } from "lucide-react";
-import { Article, User } from "@shared/schema";
+import { TrendingUp, BookOpen, Clock, Eye, ThumbsUp } from "lucide-react";
+import { Article } from "@/lib/schemas";
 
 export default function ResponsiveHomePage() {
   const { data: featuredArticles, isLoading: featuredLoading } = useQuery<Article[]>({

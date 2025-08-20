@@ -1,38 +1,8 @@
 import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { insertCommentSchema } from "@shared/schema";
-import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Heart, Reply, MoreVertical } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
-import { z } from "zod";
-
-const commentFormSchema = insertCommentSchema.extend({
-  content: z.string().min(1, "Comment cannot be empty").max(1000, "Comment is too long"),
-});
-
-type CommentFormData = z.infer<typeof commentFormSchema>;
-
-interface Comment {
-  id: string;
-  content: string;
-  authorId: string;
-  articleId: string;
-  parentId?: string;
-  likes: number;
-  createdAt: string;
-  author?: {
-    id: string;
-    name: string;
-    avatar?: string;
-  };
-}
+import { Heart, Reply } from "lucide-react";
 
 interface CommentSectionProps {
   articleId: string;
