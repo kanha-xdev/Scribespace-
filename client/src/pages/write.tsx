@@ -137,7 +137,7 @@ export default function Write() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumb />
         <div className="text-center mb-8 lg:mb-12">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold mb-4 text-white">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight mb-4 text-white" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif' }}>
             Create Your Story
           </h1>
           <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto">
@@ -173,7 +173,7 @@ export default function Write() {
         <Card className="bg-slate-800/50 border-slate-700/50 rounded-xl shadow-2xl">
           <CardHeader className="pb-4">
             <div className="flex flex-col space-y-4">
-              <CardTitle className="text-xl sm:text-2xl font-serif text-white">Write Article</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl font-light tracking-tight text-white" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif' }}>Write Article</CardTitle>
               
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
@@ -182,7 +182,7 @@ export default function Write() {
                   variant="outline" 
                   onClick={onSaveDraft}
                   disabled={saveDraftMutation.isPending}
-                  className="w-full sm:w-auto border-slate-600 text-slate-300 hover:bg-slate-700 bg-slate-900/50"
+                  className="w-full sm:w-auto border-slate-600 text-slate-300 hover:bg-slate-700 bg-slate-900/50 rounded-full px-6 py-2.5 font-medium transition-all duration-200"
                   data-testid="button-save-draft"
                 >
                   <Save className="w-4 h-4 mr-2 flex-shrink-0" />
@@ -191,7 +191,7 @@ export default function Write() {
                 <Button 
                   type="button"
                   variant="outline"
-                  className="w-full sm:w-auto border-slate-600 text-slate-300 hover:bg-slate-700 bg-slate-900/50"
+                  className="w-full sm:w-auto border-slate-600 text-slate-300 hover:bg-slate-700 bg-slate-900/50 rounded-full px-6 py-2.5 font-medium transition-all duration-200"
                   data-testid="button-preview"
                 >
                   <Eye className="w-4 h-4 mr-2 flex-shrink-0" />
@@ -280,6 +280,7 @@ export default function Write() {
                         <FormControl>
                           <Input
                             {...field}
+                            value={field.value || ''}
                             placeholder="https://example.com/image.jpg"
                             className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-400"
                             data-testid="input-featured-image"
@@ -308,7 +309,7 @@ export default function Write() {
                       variant="outline" 
                       size="sm" 
                       onClick={addTag}
-                      className="border-slate-600 text-slate-300 hover:bg-slate-700 w-full sm:w-auto"
+                      className="border-slate-600 text-slate-300 hover:bg-slate-700 w-full sm:w-auto rounded-full px-4 py-2 font-medium transition-all duration-200"
                       data-testid="button-add-tag"
                     >
                       <Plus className="w-4 h-4 mr-1 sm:mr-0" />
@@ -366,7 +367,7 @@ export default function Write() {
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white font-medium py-2 px-6 order-1 sm:order-2"
+                    className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl order-1 sm:order-2"
                     disabled={publishMutation.isPending}
                     data-testid="button-publish"
                   >
