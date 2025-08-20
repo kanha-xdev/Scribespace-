@@ -86,16 +86,7 @@ function AppRoutes() {
           <Route component={NotFound} />
         </Switch>
         
-        {/* Floating Action Button for authenticated users */}
-        <Link 
-          href="/write"
-          className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 bg-gradient-to-r from-purple-600 to-cyan-600 text-white p-3 sm:p-4 rounded-full shadow-2xl hover:from-purple-700 hover:to-cyan-700 transition-all duration-300 hover:scale-110 z-50"
-          data-testid="button-floating-write"
-        >
-          <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-          </svg>
-        </Link>
+
       </main>
       <Footer />
     </div>

@@ -45,8 +45,12 @@ export default function SignUpPage() {
         return;
       }
 
-      // Simulate account creation - replace with actual API call
+      // Simulate account creation with delay
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API delay
+      
       localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("userName", formData.name);
+      localStorage.setItem("userEmail", formData.email);
       setLocation("/home");
     } catch (err) {
       setError("Sign up failed. Please try again.");

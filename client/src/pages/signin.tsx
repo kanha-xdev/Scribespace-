@@ -20,14 +20,19 @@ export default function SignInPage() {
     setError("");
 
     try {
-      // Simulate authentication - replace with actual API call
-      if (email && password) {
-        // Mock successful login
-        localStorage.setItem("isAuthenticated", "true");
-        setLocation("/home");
-      } else {
+      // Basic validation
+      if (!email || !password) {
         setError("Please enter both email and password");
+        return;
       }
+
+      // For demo purposes, accept any email/password combination
+      // In real app, this would be an API call
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
+      
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("userEmail", email);
+      setLocation("/home");
     } catch (err) {
       setError("Sign in failed. Please try again.");
     } finally {
