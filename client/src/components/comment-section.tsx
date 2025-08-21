@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Heart, Reply } from "lucide-react";
+import type { Comment, InsertComment } from "@shared/schema";
 
 interface CommentSectionProps {
   articleId: string;
@@ -10,20 +11,24 @@ interface CommentSectionProps {
 
 export default function CommentSection({ articleId }: CommentSectionProps) {
   const [newComment, setNewComment] = useState("");
-  const [comments] = useState([
+  const [comments] = useState<Comment[]>([
     {
       id: "1",
       content: "Great article! Really insightful perspective on this topic.",
-      author: "Jane Smith",
-      createdAt: "2024-01-15",
-      likes: 5
+      authorId: "user1",
+      articleId: articleId,
+      parentId: null,
+      likes: 5,
+      createdAt: new Date("2024-01-15")
     },
     {
       id: "2", 
       content: "Thanks for sharing this. I found the section about mindful writing particularly helpful.",
-      author: "Mike Johnson",
-      createdAt: "2024-01-14",
-      likes: 3
+      authorId: "user2", 
+      articleId: articleId,
+      parentId: null,
+      likes: 3,
+      createdAt: new Date("2024-01-14")
     }
   ]);
 
@@ -63,8 +68,8 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
             <div key={comment.id} className="bg-slate-900/30 rounded-lg p-4">
               <div className="flex items-start justify-between mb-2">
                 <div>
-                  <h4 className="text-white font-medium">{comment.author}</h4>
-                  <p className="text-slate-400 text-sm">{comment.createdAt}</p>
+                  <h4 className="text-white font-medium">User {comment.authorId}</h4>
+                  <p className="text-slate-400 text-sm">{comment.createdAt.toLocaleDateString()}</p>
                 </div>
               </div>
               
