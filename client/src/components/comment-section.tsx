@@ -1,17 +1,8 @@
 import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { insertCommentSchema } from "../../../shared/schema";
-import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Heart, Reply, MoreVertical } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
-import { z } from "zod";
+import { Heart, Reply } from "lucide-react";
 
 interface CommentSectionProps {
   articleId: string;
@@ -76,9 +67,9 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
                   <p className="text-slate-400 text-sm">{comment.createdAt}</p>
                 </div>
               </div>
-
+              
               <p className="text-slate-300 mb-3">{comment.content}</p>
-
+              
               <div className="flex items-center gap-4">
                 <Button 
                   variant="ghost" 
